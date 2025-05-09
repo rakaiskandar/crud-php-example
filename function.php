@@ -2,7 +2,7 @@
 include "koneksi.php";
 
 // INSERT
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'insert') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'insert') {
     $nama = $_POST["nama"];
     $umur = $_POST["umur"];
     $alamat = $_POST["alamat"];
@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     }
 }
 
-// UPDATE
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'edit') {
+// EDIT
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'edit') {
     $id = $_POST["id"];
     $nama = $_POST["nama"];
     $umur = $_POST["umur"];
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
 }
 
 // DELETE
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['action'] == 'delete') {
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'delete') {
     $id = $_GET["id"];
 
     if (deletePasien($koneksi, $id)) {
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['acti
     }
 }
 
-// FUNCTION DEFINITIONS
+// FUNGSI
 function insertPasien($koneksi, $nama, $umur, $alamat) {
     $query = "INSERT INTO pasien (nama, umur, alamat) VALUES ('$nama', '$umur', '$alamat')";
     return mysqli_query($koneksi, $query);
