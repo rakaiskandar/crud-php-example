@@ -1,6 +1,22 @@
 <?php
 include "koneksi.php";
 
+// FUNGSI
+function insertPasien($koneksi, $nama, $umur, $alamat) {
+    $query = "INSERT INTO pasien (nama, umur, alamat) VALUES ('$nama', '$umur', '$alamat')";
+    return mysqli_query($koneksi, $query);
+}
+
+function updatePasien($koneksi, $id, $nama, $umur, $alamat) {
+    $query = "UPDATE pasien SET nama='$nama', umur='$umur', alamat='$alamat' WHERE id=$id";
+    return mysqli_query($koneksi, $query);
+}
+
+function deletePasien($koneksi, $id) {
+    $query = "DELETE FROM pasien WHERE id=$id";
+    return mysqli_query($koneksi, $query);
+}
+
 // INSERT
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'insert') {
     $nama = $_POST["nama"];
@@ -40,21 +56,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'delete') {
     } else {
         echo "Data gagal dihapus";
     }
-}
-
-// FUNGSI
-function insertPasien($koneksi, $nama, $umur, $alamat) {
-    $query = "INSERT INTO pasien (nama, umur, alamat) VALUES ('$nama', '$umur', '$alamat')";
-    return mysqli_query($koneksi, $query);
-}
-
-function updatePasien($koneksi, $id, $nama, $umur, $alamat) {
-    $query = "UPDATE pasien SET nama='$nama', umur='$umur', alamat='$alamat' WHERE id=$id";
-    return mysqli_query($koneksi, $query);
-}
-
-function deletePasien($koneksi, $id) {
-    $query = "DELETE FROM pasien WHERE id=$id";
-    return mysqli_query($koneksi, $query);
 }
 ?>
